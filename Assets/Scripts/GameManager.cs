@@ -10,10 +10,9 @@ public class GameManager : MonoBehaviour {
     public GUIStyle style1;
     public GUIStyle style2;
     private static int score = 0;
- //   private float timer = 30.0f;
 
     private string score_txt = "";
-    private string time_text = "";
+
 
     GameState gameState = GameState.Game;
 
@@ -49,16 +48,7 @@ public class GameManager : MonoBehaviour {
     void Update()
     {
         score_txt = score.ToString();
-       // time_text = ((int)(timer)).ToString();
-       /* if (gameState == GameState.Game)
-        {
-            timer -= Time.deltaTime;
-            if (timer <= 0)
-            {
-                EndGame();
-                gameState = GameState.End;
-            }
-        }*/
+
     }
     void OnGUI()
     {
@@ -67,36 +57,17 @@ public class GameManager : MonoBehaviour {
         {
             DisplayInGameHUD();
         }
-        if (gameState == GameState.End)
-        {
-            DisplayGameOverScreen();
-        }
     }
     public void AddScore(int amount)
     {
         score += amount;
     }
-    /*public void EndGame()
-    {
-        Application.LoadLevel("scene2");
-    }*/
-    void DisplayGameOverScreen()
-    {
-        GUI.Label(new Rect(Screen.width/2 - 50, Screen.height/2, 100, 30), "Game Over!", style1);
-        GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 30, 100, 30), "Score: " + score, style1);
-        if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 60, 60, 20), "restart", style2))
-        {
-            Application.LoadLevel("scene1");
-            Destroy(gameObject);
-        }
-        if (GUI.Button(new Rect(Screen.width / 2 + 20, Screen.height / 2 + 60, 60, 20), "quit", style2)) Application.Quit();
-    }
+
     void DisplayInGameHUD()
     {
-        GUI.Label(new Rect(40, 40, 80, 20), "US PONTIN: " + score_txt, style1);
- //       GUI.Label(new Rect(40, 70, 80, 20), "your time:  " + time_text, style1);
-        GUI.Label(new Rect(40, 100, 120, 20), "ARRASTA ESSI PEIXI", style1);
- //       GUI.Label(new Rect(40, 130, 120, 20), "Mouse wheel to rotate", style1);
+        GUI.Label(new Rect(10, 10, 40, 10), "PONTIN: " + score_txt, style1);
+
+        GUI.Label(new Rect(20, 50, 60, 10), "ARRASTA ESSI PEIXI", style1);
 
     }
 }

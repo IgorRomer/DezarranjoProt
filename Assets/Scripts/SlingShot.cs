@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class SlingShot : MonoBehaviour {
 
     public GameObject line1;
@@ -32,7 +34,7 @@ public class SlingShot : MonoBehaviour {
         lines = new LineRenderer[2];
         line1.GetComponent<LineRenderer>().SetPosition(0, anchor1.position);
         line1.GetComponent<LineRenderer>().SetPosition(1, dragPoint.transform.position);
-        line1.GetComponent<LineRenderer>().SetWidth(0.15f, 0.05f);
+	    line1.GetComponent<LineRenderer>().SetWidth(0.15f, 0.05f);
         lines[0] = line1.GetComponent<LineRenderer>();
         line2.GetComponent<LineRenderer>().SetPosition(0, anchor2.position);
         line2.GetComponent<LineRenderer>().SetPosition(1, dragPoint.transform.position);
@@ -54,7 +56,7 @@ public class SlingShot : MonoBehaviour {
         {
             lines[i].SetPosition(1, dragPoint.transform.position);
             lines[i].SetPosition(0, anchors[i].position);
-            lines[i].SetWidth(0.15f / lineLengths[i], 0.05f / lineLengths[i]);
+//            lines[i].SetWidth(0.15f / lineLengths[i], 0.05f / lineLengths[i]);
             lineLengths[i] = Vector3.Distance(dragPoint.transform.position, anchors[i].position);
 
             if (lineLengths[i] <= 0.65f) lineLengths[i] = 0.65f;
@@ -113,18 +115,11 @@ public class SlingShot : MonoBehaviour {
     public void MakeShot(float power)
     {
         GameObject _projectile = Instantiate(projectile, midPoint_out.position, Quaternion.identity) as GameObject;
-        //_projectile.rigidbody.AddForce(midPoint_out.TransformDirection(0, power * 2.57f, 0), ForceMode.Impulse);
-        //_projectile.rigidbody.AddForce(GetShotDirection() * power * 2.65f, ForceMode.Impulse);
-        _projectile.GetComponent<Rigidbody>().AddForce(GetShotDirection() * power * 2.5f, ForceMode.Impulse);
-        //_projectile.rigidbody2D.AddRelativeForce(midPoint_out.TransformDirection(0, 2 * power, 0), ForceMode2D.Impulse);
-        Destroy(_projectile, 4.0f);
-    }
-    public struct ShotData
-    {
-        float distance;
-        float angle;
-        float velocity;
-    };
 
-    
+        _projectile.GetComponent<Rigidbody2D>().AddForce(GetShotDirection() * power * 2.5f, ForceMode2D.Impulse);
+
+        Destroy(_projectile, 4f);
+
+    }
+   
 }

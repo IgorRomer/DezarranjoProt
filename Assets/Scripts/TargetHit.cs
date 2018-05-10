@@ -12,7 +12,7 @@ public class TargetHit : MonoBehaviour {
         TM = GameObject.Find("targets").GetComponent<TargetManager>();
     }
 
-	void OnCollisionEnter(Collision col)
+	void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Player")
         {
